@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:4000/";
+const BASE_URL = "http://localhost:7070/api/";
 const LOGIN_ENDPOINT = "auth/login";
 
 function handleHttpErrors(res) {
@@ -88,13 +88,13 @@ const hasUserAccess = (neededRole, loggedIn) => {
 
 const facade = {
   makeOptions,
-  //getUserNameAndRoles,
-  //hasUserAccess,
-  //setToken,
-  //getToken,
-  //loggedIn,
-  //login,
-  //logout,
+  getUserNameAndRoles,
+  hasUserAccess,
+  setToken,
+  getToken,
+  loggedIn,
+  login,
+  logout,
   fetchData,
 };
 
