@@ -25,7 +25,7 @@ function Header() {
           </NavLink>
         </li>
         {loggedIn && roles === "user" && (
-          <div>
+          <div className={styles.protectedLeftSide}>
             <li>
               <NavLink
                 to="/about"
@@ -42,7 +42,6 @@ function Header() {
                 Register Timelog
               </NavLink>
             </li>
-
             <li>
               <NavLink
                 to="/timelogs"
@@ -54,7 +53,7 @@ function Header() {
           </div>
         )}
         {loggedIn && roles === "admin" && (
-          <div>
+          <div className={styles.protectedLeftSide}>
             <li>
               <NavLink
                 to="/about"
