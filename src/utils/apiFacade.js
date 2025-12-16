@@ -27,8 +27,8 @@ const login = (user, password) => {
     });
 };
 
-const fetchData = (endpoint, method) => {
-  const optionObject = makeOptions(method, true);
+const fetchData = (endpoint, method, body) => {
+  const optionObject = makeOptions(method, true, body);
   return fetch(BASE_URL + endpoint, optionObject)
     .then(handleHttpErrors)
     .catch((error) => {
