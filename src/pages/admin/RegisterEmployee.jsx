@@ -22,7 +22,6 @@ function RegisterEmployee() {
     );
     protectedEndpointPromise.then((data) => setEmployees(data));
   }, []);
-
   function mutateEmployee(e) {
     if (isEditing) {
       updateEmployee(e);
@@ -38,8 +37,14 @@ function RegisterEmployee() {
       e
     );
     postEndpointPromise
-      .then((createdEmployee) => setEmployees([...employees, createdEmployee]))
-      .catch((err) => console.error(err));
+      .then((createdEmployee) =>
+        setEmployees((prevEmployees) => [...prevEmployees, createdEmployee])
+      )
+      .then(() => {
+        facade
+          .fetchData("/admin/employees", "GET")
+          .then((data) => setEmployees(data));
+      });
   }
 
   function updateEmployee(e) {
