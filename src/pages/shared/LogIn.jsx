@@ -1,6 +1,7 @@
 import {useState} from "react"
 import facade from "../../utils/apiFacade.js";
 import {useNavigate} from "react-router";
+import styles from '../../styles/shared/LogIn.module.css';
 
 function LogIn() {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ function LogIn() {
     }
 
     return (
-        <div className="login-container">
+        <div className={styles.container}>
             <h2>Login</h2>
             <form onSubmit={performLogin}>
                 <input placeholder="User Name" id="username" onChange={onChange} value={loginCredentials.username}/>

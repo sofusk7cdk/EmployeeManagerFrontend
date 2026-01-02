@@ -144,6 +144,7 @@ function RegisterEmployee() {
             placeholder="Enter Password"
             onChange={handleChange}
             value={employee.password}
+            readOnly={isEditing}
           />
 
           <button type="submit">Submit</button>

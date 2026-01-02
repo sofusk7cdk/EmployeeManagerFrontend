@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import facade from "../../utils/apiFacade";
 import styles from "../../styles/employee/RegisterTimeLog.module.css";
 
@@ -6,7 +6,7 @@ function RegisterTimeLog() {
   const username = facade.getUserNameAndRoles()[0];
   const blankTimeLog = {
     id: "",
-    users: username,
+    user: username,
     dateTime: "",
     hours: "",
     description: "",
@@ -14,6 +14,14 @@ function RegisterTimeLog() {
 
   const [timeLog, setTimeLog] = useState(blankTimeLog);
   const [timeLogs, setTimeLogs] = useState([]);
+
+    useEffect(() => {
+    const protectedEndpointPromise = facade.fetchData(
+      "timelogs/employee/" + username,
+      "GET"
+    );
+    protectedEndpointPromise.then((data) => setTimeLogs(data));
+  }, []);
 
 
   function mutateTimeLog(timeLog) {
@@ -84,13 +92,12 @@ function RegisterTimeLog() {
           <label htmlFor="id">Id</label>
           <input id="id" type="number" readOnly value={timeLog.id} />
 
-          <label htmlFor="users">User</label>
-          <input id="users" type="text" readOnly value={timeLog.users} />
+
 
           <label htmlFor="dateTime">Date Time</label>
           <input
             id="dateTime"
-            type="date"
+            type="text"
             placeholder="Enter Date Time"
             onChange={handleChange}
             value={timeLog.dateTime}
